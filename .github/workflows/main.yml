@@ -1,0 +1,14 @@
+name: run cypress test with github action 
+
+on: [push, workflow_dispatch]
+
+jobs: 
+  cypress-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
+      - name: run cypress test
+        run: npx cypress run --e2e --browser chrome
