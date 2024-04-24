@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "401f17c1-31ee-4538-920c-7abaf1b7cc7e",
+		"name": "collection-exo-3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26359242",
+		"_collection_link": "https://www.postman.com/speeding-moon-592444/workspace/promo-2-24/collection/26359242-401f17c1-31ee-4538-920c-7abaf1b7cc7e?action=share&source=collection_link&creator=26359242"
+	},
+	"item": [
+		{
+			"name": "req-get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('check proprtys', ()=>{",
+							"    pm.expect(pm.response.json()).to.have.property('userId')",
+							"    pm.expect(pm.response.json()).to.have.property('id')",
+							"    pm.expect(pm.response.json()).to.have.property('title')",
+							"    pm.expect(pm.response.json()).to.have.property('body')",
+							"})",
+							"",
+							"pm.test('check value id', ()=>{",
+							"\tpm.expect(pm.response.json().userId).to.eql(1)",
+							"})",
+							"",
+							"pm.test('check value title', ()=>{",
+							"\tpm.expect(pm.response.json().title).to.eql( \"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\")",
+							"})",
+							"",
+							"pm.test('check value body is not empty', ()=>{",
+							"\tpm.expect(pm.response.json().body).not.be.empty",
+							"})",
+							"",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "req-get-all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"check object length\", function () {",
+							"    pm.expect(Object.keys(pm.response.json()).length).to.eq(100)",
+							"});",
+							"",
+							"pm.test('check title object 3', ()=>{",
+							"\tpm.expect(JSON.stringify(Object(pm.response.json()[2].title))).to.deep.equals(JSON.stringify(\"ea molestias quasi exercitationem repellat qui ipsa sit aut\"))",
+							"  ",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
